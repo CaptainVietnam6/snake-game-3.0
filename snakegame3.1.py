@@ -35,8 +35,6 @@ blue = (0, 0, 255)
 white = (255, 255, 255)
 black = (0, 0, 0)
 orange = (255, 165, 0)
-pink = (255, 192, 203)
-light_red = (204, 0, 0)
 
 #define snake speed and size
 snake_size = 25
@@ -87,7 +85,7 @@ def gameLoop():
     snake_list = []
     snake_length = 1
 
-    '''start of global define function thingys'''#these variables are defined here as global and are defined as False for proper functioning. Will later be defined as true to finally define snake speed.
+    '''start of global define function thingys'''#these variables are defined here as global and are defined as False for proper functioning.
     global global_snake_speed1
     global global_snake_speed2
     global global_snake_speed3
@@ -102,8 +100,8 @@ def gameLoop():
     '''end of global define function thingies'''
 
     #randomly generates the x and y coordinates for the food
-    spawn_food_x = round(random.randrange(25, screen_size_x - snake_size - 25) / snake_size) * snake_size
-    spawn_food_y = round(random.randrange(25, screen_size_y - snake_size - 25) / snake_size) * snake_size
+    spawn_food_x = round(random.randint(25, screen_size_x - snake_size - 25) / snake_size) * snake_size
+    spawn_food_y = round(random.randint(25, screen_size_y - snake_size - 25) / snake_size) * snake_size
 
     #randomly picks background color
     global random_background_color
@@ -218,11 +216,16 @@ def gameLoop():
         if x1 >= screen_size_x or x1 < 0 or y1 >= screen_size_y or y1 < 0:
             close_game = True #ends game if snake is out of bounds
 
+        #movement for the snake
         x1 += x1_movement_change
         y1 += y1_movement_change
 
         dis.fill(random_background_color)
+
+        #spawns food items
         pygame.draw.rect(dis, black, [spawn_food_x, spawn_food_y, snake_size, snake_size])
+
+        #for the tail of the snake
         snake_head = []
         snake_head.append(x1)
         snake_head.append(y1)
@@ -240,9 +243,9 @@ def gameLoop():
 
         if x1 == spawn_food_x and y1 == spawn_food_y:
             print("ate food")
-            spawn_food_x = round(random.randrange(25, screen_size_x - snake_size - 25) / snake_size) * snake_size
-            spawn_food_y = round(random.randrange(25, screen_size_y - snake_size - 25) / snake_size) * snake_size
-            print(f"score now {snake_length}")
+            spawn_food_x = round(random.randint(25, screen_size_x - snake_size - 25) / snake_size) * snake_size
+            spawn_food_y = round(random.randint(25, screen_size_y - snake_size - 25) / snake_size) * snake_size
+            print(f"score is now {snake_length}")
             snake_length += 1
 
         if global_snake_speed1 == True:
@@ -277,8 +280,8 @@ def gameLoop2():
     snake_length = 1
 
     #randomly generates the x and y coordinates for the food
-    spawn_food_x = round(random.randrange(25, screen_size_x - snake_size - 25) / snake_size) * snake_size
-    spawn_food_y = round(random.randrange(25, screen_size_y - snake_size - 25) / snake_size) * snake_size
+    spawn_food_x = round(random.randint(25, screen_size_x - snake_size - 25) / snake_size) * snake_size
+    spawn_food_y = round(random.randint(25, screen_size_y - snake_size - 25) / snake_size) * snake_size
 
     #randomly picks background color
     global random_background_color
@@ -304,7 +307,6 @@ def gameLoop2():
                     if event.key == pygame.K_q: #detects Q presses
                         print("quitting game")
                         game_over = True
-                        game_close = False
                     #this is to restart the game
                     if event.key == pygame.K_r: #detects R presses
                         print("restarting game")
@@ -358,6 +360,7 @@ def gameLoop2():
         if x1 >= screen_size_x or x1 < 0 or y1 >= screen_size_y or y1 < 0:
             close_game = True #ends game if snake is out of bounds
 
+        #snake movement
         x1 += x1_movement_change
         y1 += y1_movement_change
 
@@ -380,9 +383,9 @@ def gameLoop2():
 
         if x1 == spawn_food_x and y1 == spawn_food_y:
             print("ate food")
-            spawn_food_x = round(random.randrange(25, screen_size_x - snake_size - 25) / snake_size) * snake_size
-            spawn_food_y = round(random.randrange(25, screen_size_y - snake_size - 25) / snake_size) * snake_size
-            print(f"score now {snake_length}")
+            spawn_food_x = round(random.randint(25, screen_size_x - snake_size - 25) / snake_size) * snake_size
+            spawn_food_y = round(random.randint(25, screen_size_y - snake_size - 25) / snake_size) * snake_size
+            print(f"score is now {snake_length}")
             snake_length += 1
 
         if global_snake_speed1 == True:
